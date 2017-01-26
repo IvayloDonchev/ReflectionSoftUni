@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace ReflectionSoftUni
 {
-    class Program
+    public class Cat : Animal
     {
-        static void Main(string[] args)
-        {
-        }
+        public string Name { get; set; }
+        public int Age { get; set; }
     }
 }
