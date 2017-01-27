@@ -111,9 +111,49 @@ namespace ReflectionSoftUni
                 Console.WriteLine(prop.Name);
 
 
-            // https://softuni.bg/trainings/resources/video/9841/video-screen-25-july-2016-ivailo-kenov-csharp-oop-advanced-july-2016
-            // до 1 ч. 10 мин.
+            // Получаване на конструктори
+            Console.WriteLine();
+            var constructors = typeof(Cat).GetConstructors();
+            foreach(var constructor in constructors)
+            {
+                var parameters = constructor.GetParameters();
+                foreach(var parameter in parameters)
+                    Console.WriteLine(parameter.Name + " : " + parameter.ParameterType.Name);
+                Console.WriteLine("-------------");
+            }
+            var ctr = typeof(Cat).GetConstructor(Type.EmptyTypes); // взема конструктора без параметри
+            var cat2 = (Cat) ctr.Invoke(new object[0]);
+            Console.WriteLine(cat2.Name);
+
+            var ctr2 = typeof(Cat).GetConstructor(new[] { typeof(string) });
+            var cat3 = ctr2.Invoke(new[] { "Ivan" });
+
+
+            // работа с методите
+            Console.WriteLine();
+            //var methods = typeof(Cat).GetMethods(); // всички методи, включително и наследените
+            var methods = typeof(Cat).GetMethods(BindingFlags.Instance | BindingFlags.Public); // само декларираните в класа
+            foreach (var method in methods)
+                Console.WriteLine(method.Name);
+            var met = typeof(Cat).GetMethod("Hello",Type.EmptyTypes);
+            met.Invoke(new Cat(), new object[0]); // втория аргумент е масива с параметри на метода - в случая - празен
+
+            var met2 = typeof(Cat).GetMethod("Hello", new[] { typeof(string) }); // другия метод Hello с един параметър string
+            string s = (string) met2.Invoke(cat3, new[] { "Vankata" });
+            Console.WriteLine(s);
+            if(met2.ReturnType == typeof(string))
+                Console.WriteLine("Test");
+            if(met2.ReturnType.Name == "String")
+                Console.WriteLine("Test");
+            Console.WriteLine();
+            var prms = met2.GetParameters();
+            foreach (var prm in prms)
+                Console.WriteLine(prm.Name + " " + prm.ParameterType.Name );
+
             Console.ReadKey();
+
+            // https://softuni.bg/trainings/resources/video/9841/video-screen-25-july-2016-ivailo-kenov-csharp-oop-advanced-july-2016
+            // до 1 ч. 31 мин.
 
         }
         private static string GetTypeName<T>() =>typeof(T).Name;
