@@ -98,8 +98,21 @@ namespace ReflectionSoftUni
             Console.WriteLine(ff.Name);
             ff.SetValue(tom, "Hello");
             Console.WriteLine(tom.getSomePrivateField());
-         
 
+            Console.WriteLine();
+            Cat gcat = new Cat { Name = "Gosho", Age = 25 };
+            typeOfCat = gcat.GetType();
+            var nameProperty = typeOfCat.GetProperty("Name");
+            Console.WriteLine(nameProperty.GetValue(gcat));
+            nameProperty.SetValue(gcat, "Ivan");
+            Console.WriteLine(nameProperty.GetValue(gcat));
+            PropertyInfo[] properties = typeOfCat.GetProperties();  // може и с var
+            foreach(var prop in properties)
+                Console.WriteLine(prop.Name);
+
+
+            // https://softuni.bg/trainings/resources/video/9841/video-screen-25-july-2016-ivailo-kenov-csharp-oop-advanced-july-2016
+            // до 1 ч. 10 мин.
             Console.ReadKey();
 
         }
