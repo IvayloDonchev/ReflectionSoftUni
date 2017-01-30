@@ -150,11 +150,24 @@ namespace ReflectionSoftUni
             foreach (var prm in prms)
                 Console.WriteLine(prm.Name + " " + prm.ParameterType.Name );
 
+            //Атрибути
+            Console.WriteLine();
+            var aname = typeof(Cat).GetProperty("Name").GetCustomAttribute<AuthorAttribute>()?.Name;
+            Console.WriteLine(aname);
+
+            Console.WriteLine();
+            typeof(Cat)
+                .GetProperties()
+                .Select(pr => new
+                {
+                    Name = pr.Name,
+                    Attrs = pr.GetCustomAttributes()
+                })
+                .ToList()
+                .ForEach(pr => Console.WriteLine(pr.Name + ": " + string.Join(", ",pr.Attrs.Select(a => a.GetType().Name.Replace("Attribute",string.Empty))))) ;
             Console.ReadKey();
 
-            // https://softuni.bg/trainings/resources/video/9841/video-screen-25-july-2016-ivailo-kenov-csharp-oop-advanced-july-2016
-            // до 1 ч. 31 мин.
-
+            
         }
         private static string GetTypeName<T>() =>typeof(T).Name;
        

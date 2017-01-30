@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +25,10 @@ namespace ReflectionSoftUni
         {
             this.Age = age;
         }
+        [Author("Az")]
+        [MaxLength(100)]
         public string Name { get; set; }
+        [Required(AllowEmptyStrings = true)]
         public int Age { get; set; }
         public string getSomePrivateField() => this.somePrivateField;
         public void Hello() =>  Console.WriteLine("Hello form method");
