@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Diagnostics;
 using System.Threading.Tasks;
-
+//  // https://softuni.bg/trainings/resources/video/9841/video-screen-25-july-2016-ivailo-kenov-csharp-oop-advanced-july-2016
 namespace ReflectionSoftUni
 {
     public class Startup
@@ -168,7 +168,6 @@ namespace ReflectionSoftUni
             Console.ReadKey();
 
             // https://softuni.bg/trainings/resources/video/9841/video-screen-25-july-2016-ivailo-kenov-csharp-oop-advanced-july-2016
-            // 1:40 часа
         }
         private static string GetTypeName<T>() =>typeof(T).Name;
        
