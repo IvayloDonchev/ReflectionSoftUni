@@ -167,7 +167,8 @@ namespace ReflectionSoftUni
                 .ForEach(pr => Console.WriteLine(pr.Name + ": " + string.Join(", ",pr.Attrs.Select(a => a.GetType().Name.Replace("Attribute",string.Empty))))) ;
             Console.ReadKey();
 
-            
+            // https://softuni.bg/trainings/resources/video/9841/video-screen-25-july-2016-ivailo-kenov-csharp-oop-advanced-july-2016
+            // 1:40 часа
         }
         private static string GetTypeName<T>() =>typeof(T).Name;
        
